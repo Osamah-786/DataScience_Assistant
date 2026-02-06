@@ -1,6 +1,6 @@
 """
 Multi-Model Advanced Data Science System for Agno Platform
-Production-Ready Version with Automatic Workflow
+Production-Ready Version with Automatic Workflow - FIXED
 
 Models:
 - llama3.1:8b → Team Leader (orchestration)
@@ -111,7 +111,7 @@ data_discovery_agent = Agent(
     ],
     tools=[
         CsvTools(csvs=csv_files) if csv_files else None,
-        FileTools(base_dir=str(BASE_DIR))
+        FileTools(base_dir=BASE_DIR)  # FIXED: Pass Path object directly
     ],
     add_history_to_context=True,
     markdown=False
@@ -139,7 +139,7 @@ data_analysis_agent = Agent(
     tools=[
         PandasTools(),
         CsvTools(csvs=csv_files) if csv_files else None,
-        FileTools(base_dir=str(BASE_DIR))
+        FileTools(base_dir=BASE_DIR)  # FIXED: Pass Path object directly
     ],
     add_history_to_context=True,
     num_history_runs=10
@@ -167,7 +167,7 @@ statistical_agent = Agent(
     ],
     tools=[
         PandasTools(),
-        FileTools(base_dir=str(BASE_DIR))
+        FileTools(base_dir=BASE_DIR)  # FIXED: Pass Path object directly
     ],
     add_history_to_context=True,
     num_history_runs=8
@@ -242,7 +242,7 @@ visualization_agent = Agent(
     tools=[
         PandasTools(),
         VisualizationTools(output_dir=str(PLOTS_DIR)),
-        FileTools(base_dir=str(BASE_DIR))
+        FileTools(base_dir=BASE_DIR)  # FIXED: Pass Path object directly
     ],
     add_history_to_context=True,
     markdown=True
@@ -308,7 +308,7 @@ report_agent = Agent(
     ],
     tools=[
         PandasTools(),
-        FileTools(base_dir=str(BASE_DIR))
+        FileTools(base_dir=BASE_DIR)  # FIXED: Pass Path object directly
     ],
     add_history_to_context=True,
     markdown=True
